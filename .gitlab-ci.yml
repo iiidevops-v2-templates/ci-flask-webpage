@@ -1,6 +1,6 @@
 include:
   - project: 'iiidevops-templates/ci-template'
-    ref: 'v2.1.1'
+    ref: 'v2.1.5'
     file: 'ci/template.gitlab-ci.yml'
 
 stages:
@@ -26,6 +26,7 @@ Test--Checkmarx source code scan:
 Build image:
   variables:
     iiidevops: deployed-environments
+    DOCKERFILE_PATH: Dockerfile
   only:
     - skip
 
@@ -53,14 +54,14 @@ Test--Anchore SBOM:
   variables:
     iiidevops: anchore
   only:
-   - skip
+    - skip
 
 Test--ZAP:
   variables:
     iiidevops: zap
     CHART_WEB_PORT: 5000
   only:
-   - skip
+    - skip
 
 Test--WebInspect:
   variables:
@@ -73,11 +74,11 @@ Test--Postman:
     iiidevops: postman
     CHART_WEB_PORT: 5000
   only:
-   - skip
+    - skip
 
 Test--Sideex:
   variables:
     iiidevops: sideex
     CHART_WEB_PORT: 5000
   only:
-   - skip
+    - skip
